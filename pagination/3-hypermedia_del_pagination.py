@@ -4,7 +4,6 @@ Deletion-resilient hypermedia pagination
 """
 
 import csv
-import math
 from typing import List, Dict
 
 
@@ -18,19 +17,16 @@ class Server:
         self.__indexed_dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
-        """
+        """Cached dataset"""
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]
-
         return self.__dataset
 
     def indexed_dataset(self) -> Dict[int, List]:
-        """Dataset indexed by sorting position, starting at 0
-        """
+        """Dataset indexed by sorting position"""
         if self.__indexed_dataset is None:
             dataset = self.dataset()
             self.__indexed_dataset = {
@@ -39,30 +35,27 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        """
-        Returns a dictionary of pagination data that is resilient to
-        deletions in the dataset.
-        """
+        """Return deletion-resilient pagination"""
         dataset = self.indexed_dataset()
-        
-        # 1. Yalnız index-i və onun cari dataset açarlarına uyğunluğunu yoxlayırıq
-        assert index is not None and index >= 0 and index <= max(dataset.keys())
+
+        assert index is not None and index >= 0 and index < len(dataset)
 
         data = []
         current_index = index
 
-        # 2. Döngü limitini dataset-in ən böyük açarına (key) bağlayırıq
-        while len(data) < page_size and current_index <= max(dataset.keys()):
+        # collect page_size items (skip deleted indexes)
+        while len(data) < page_size and current_index in dataset:
             if current_index in dataset:
                 data.append(dataset[current_index])
             current_index += 1
 
-        # 3. next_index təyini
-        next_index = current_index if current_index <= max(dataset.keys()) else None
+            # skip missing indexes
+            while current_index not in dataset and current_index < len(dataset) + page_size:
+                current_index += 1
 
         return {
-            'index': index,
-            'next_index': next_index,
-            'page_size': len(data),
-            'data': data
+            "index": index,
+            "data": data,
+            "page_size": len(data),
+            "next_index": current_index
         }
