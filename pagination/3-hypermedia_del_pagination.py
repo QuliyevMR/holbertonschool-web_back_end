@@ -43,27 +43,24 @@ class Server:
         Returns a dictionary of pagination data that is resilient to
         deletions in the dataset.
         """
-        # 1. Validate the index
-        indexed_data = self.indexed_dataset()
-        assert index is not None and 0 <= index < len(indexed_data)
+        # 1. Tipin int olduğunu və indeksin orijinal məlumatın limitlərində olduğunu yoxlayırıq
+        assert type(index) == int and type(page_size) == int
+        assert 0 <= index < len(self.dataset())
 
+        indexed_data = self.indexed_dataset()
         data = []
         current_index = index
-        
-        # 2. Collect 'page_size' number of items
-        while len(data) < page_size and current_index < len(indexed_data):
-            item = indexed_data.get(current_index)
-            if item is not None:
-                data.append(item)
-            # Always increment the current_index to skip deletions
+
+        # 2. Döngü limitini dictionary-nin deyil, orijinal datanın uzunluğuna (len(self.dataset())) bağlayırıq
+        while len(data) < page_size and current_index < len(self.dataset()):
+            if current_index in indexed_data:
+                data.append(indexed_data[current_index])
             current_index += 1
 
-        # 3. next_index is where the loop stopped
-        next_index = current_index if current_index < len(indexed_data) else None
-
+        # 3. next_index birbaşa dayandığımız son index olur
         return {
             'index': index,
-            'next_index': next_index,
+            'next_index': current_index,
             'page_size': len(data),
             'data': data
         }
