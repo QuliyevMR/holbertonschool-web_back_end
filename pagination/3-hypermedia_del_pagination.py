@@ -26,7 +26,7 @@ class Server:
         return self.__dataset
 
     def indexed_dataset(self) -> Dict[int, List]:
-        """Dataset indexed by sorting position"""
+        """Dataset indexed by position"""
         if self.__indexed_dataset is None:
             dataset = self.dataset()
             self.__indexed_dataset = {
@@ -38,20 +38,18 @@ class Server:
         """Return deletion-resilient pagination"""
         dataset = self.indexed_dataset()
 
-        assert index is not None and index >= 0 and index < len(dataset)
+        # düzgün assert
+        assert isinstance(index, int) and index >= 0 and index <= max(dataset.keys())
 
         data = []
         current_index = index
+        max_index = max(dataset.keys())
 
-        # collect page_size items (skip deleted indexes)
-        while len(data) < page_size and current_index in dataset:
+        # əsas düzgün loop
+        while len(data) < page_size and current_index <= max_index:
             if current_index in dataset:
                 data.append(dataset[current_index])
             current_index += 1
-
-            # skip missing indexes
-            while current_index not in dataset and current_index < len(dataset) + page_size:
-                current_index += 1
 
         return {
             "index": index,
