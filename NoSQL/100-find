@@ -1,0 +1,2 @@
+// 'school' bazasındakı 'students' kolleksiyasında olan bütün sənədləri tapır
+db.students.find()
