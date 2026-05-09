@@ -1,2 +1,2 @@
-// 'school' bazasındakı 'students' kolleksiyasında olan bütün sənədləri tapır
-db.students.find()
+// Lists all documents with name starting by Holberton in the collection school
+db.school.find({ name: { $regex: /^Holberton/ } })
