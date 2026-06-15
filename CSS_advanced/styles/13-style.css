@@ -1,21 +1,101 @@
-/* ... existing styles from 12-style.css ... */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Raleway:wght@400;700&display=swap');
 
-/* Target anchor elements that contain a hyperlink */
+/* Custom properties (Variables) */
+:root {
+  --color-primary: #d73953;
+  --color-black: #090909;
+  --color-white: #ffffff;
+  --color-light-grey: #f3f3f3;
+  --color-dark-grey: #353535;
+  --text-color: var(--color-black);
+  --font-family-base: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-family-title: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-size-small: 1.2rem;
+  --font-size-medium: 1.6rem;
+  --font-size-large: 1.8rem;
+  --font-size-x-large: 2.3rem;
+  --font-size-xx-large: 4.8rem;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --line-height-small: 1.2;
+  --line-height-base: 1.5;
+  --line-height-big: 1.8;
+  --section-header-align: center;
+  --section-tagline-transform: uppercase;
+  --section-title-margin: 0;
+  --section-title-color: var(--color-black);
+}
+
+/* Smooth scrolling and base font sizing */
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+/* Body fallback, text styling, default font size, weight, and line height */
+body {
+  color: var(--text-color);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+/* Links style adjustments - Only targets anchor elements containing a hyperlink */
 a[href] {
-    /* Your existing anchor styles go here if any */
+  color: var(--text-color);
+  text-decoration: none;
 }
 
-/* Target the visited state directly after */
+/* Directly after: target the visited state */
 a[href]:visited {
-    font-style: italic;
+  font-style: italic;
 }
 
-/* Target the hover state directly after */
+/* Directly after: target the hover state */
 a[href]:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* Target the active state directly after */
+/* Directly after: target the active state */
 a[href]:active {
-    background-color: var(--color-light-grey);
+  background-color: var(--color-light-grey);
+}
+
+/* Heading styles and weight */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-title);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Helper class to completely hide elements */
+.visually-hidden {
+  display: none;
+}
+
+/* Alignment rules for section layout containers */
+.section-header {
+  text-align: var(--section-header-align);
+}
+
+/* Accent foreground color for cards and section taglines */
+.card-category,
+.section-tagline {
+  color: var(--color-primary);
+}
+
+/* Dedicated styling for section titles */
+.section-title {
+  font-family: var(--font-family-title);
+  font-size: var(--font-size-xx-large);
+  font-weight: var(--font-weight-bold);
+  margin: var(--section-title-margin);
+  color: var(--section-title-color);
+}
+
+/* Dedicated styling for section taglines */
+.section-tagline {
+  font-family: var(--font-family-title);
+  text-transform: var(--section-tagline-transform);
+  font-weight: var(--font-weight-bold);
 }
