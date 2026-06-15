@@ -41,23 +41,20 @@ body {
   line-height: var(--line-height-base);
 }
 
-/* Links style adjustments - Only targets anchor elements containing a hyperlink */
+/* Pseudo Classes for links */
 a[href] {
   color: var(--text-color);
   text-decoration: none;
 }
 
-/* Directly after: target the visited state */
 a[href]:visited {
   font-style: italic;
 }
 
-/* Directly after: target the hover state */
 a[href]:hover {
   text-decoration: underline;
 }
 
-/* Directly after: target the active state */
 a[href]:active {
   background-color: var(--color-light-grey);
 }
