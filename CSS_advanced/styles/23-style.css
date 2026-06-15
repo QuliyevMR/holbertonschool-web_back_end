@@ -574,6 +574,14 @@ ul.row {
   text-align: right;
 }
 
+/* Dark Theme for Sections (Task 22) */
+[data-section-theme="dark"] {
+  --text-color: var(--color-white);
+  --section-title-color: var(--color-white);
+  background: var(--color-black);
+}
+
+/* Fix issues for dark theme (Task 23) */
 .footer-address {
   color: var(--text-color);
 }
@@ -584,11 +592,4 @@ ul.row {
 
 .social-link svg {
   fill: var(--text-color);
-}
-
-/* Dark Theme for Sections */
-[data-section-theme="dark"] {
-  --text-color: var(--color-white);
-  --section-title-color: var(--color-white);
-  background: var(--color-black);
 }
