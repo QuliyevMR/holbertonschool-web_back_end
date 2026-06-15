@@ -234,7 +234,7 @@ fieldset {
  * 1. Correct the text wrapping in Edge and IE.
  * 2. Correct the color inheritance from `fieldset` elements in IE.
  * 3. Remove the padding so developers are not caught out when they zero out
- *    `fieldset` elements in all browsers.
+ * `fieldset` elements in all browsers.
  */
 
 legend {
@@ -384,6 +384,8 @@ template {
   --section-footer-padding: 3rem 0 0;
   --section-footer-align: center;
   --footer-padding: 5rem 0 1rem;
+  
+  /* New Navbar Variables */
   --nav-item-font-family: var(--font-family-title);
   --nav-item-font-weight: var(--font-weight-bold);
   --nav-item-font-size: var(--font-size-medium);
@@ -498,4 +500,34 @@ h1, h2, h3, h4, h5, h6 {
 /* Footer padding */
 .footer {
   padding: var(--footer-padding);
+}
+
+/* Navbar Customization */
+.navbar-menu {
+  float: right;
+}
+
+.nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.nav .nav-item {
+  font-family: var(--nav-item-font-family);
+  font-weight: var(--nav-item-font-weight);
+  font-size: var(--nav-item-font-size);
+  letter-spacing: var(--nav-item-letter-spacing);
+  display: var(--nav-item-display);
+  margin: var(--nav-item-margin);
+}
+
+.nav .nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.nav .nav-link:hover {
+  color: var(--nav-item-link-hover);
 }
