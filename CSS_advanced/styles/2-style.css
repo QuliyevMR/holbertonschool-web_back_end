@@ -1,0 +1,21 @@
+/* Smooth scrolling on the html element */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body and links foreground color */
+body,
+a {
+  color: #161616;
+}
+
+/* Helper class to completely hide elements */
+.visually-hidden {
+  display: none;
+}
+
+/* Accent foreground color for cards and section taglines */
+.card-category,
+.section-tagline {
+  color: #D73953;
+}
