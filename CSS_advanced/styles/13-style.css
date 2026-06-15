@@ -41,21 +41,21 @@ body {
   line-height: var(--line-height-base);
 }
 
-/* Pseudo Classes for links */
-a[href] {
+/* Links style adjustments */
+a:link {
   color: var(--text-color);
   text-decoration: none;
 }
 
-a[href]:visited {
+a:visited {
   font-style: italic;
 }
 
-a[href]:hover {
+a:hover {
   text-decoration: underline;
 }
 
-a[href]:active {
+a:active {
   background-color: var(--color-light-grey);
 }
 
